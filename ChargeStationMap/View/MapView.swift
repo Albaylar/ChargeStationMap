@@ -4,62 +4,28 @@
 //
 //  Created by Furkan Deniz Albaylar on 17.09.2023.
 //
-
+/*
 import SwiftUI
 import MapKit
 
-
-struct MapView: UIViewRepresentable {
-    @Binding var selectedCharge: ChargeListViewModel?
-    @Binding var region: MKCoordinateRegion
-    var stations: [ChargeListViewModel] // Değişiklik: stations dizisi olarak güncelle
+struct MapView: View {
+    @Binding var selectedAnnotation: MKPointAnnotation?
     
-    func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        mapView.delegate = context.coordinator
-        return mapView
-    }
-    
-    // ... Diğer metotlar ...
-    
-    class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: MapView
-
-        init(_ parent: MapView) {
-            self.parent = parent
-        }
-
-        // Pin üzerine tıklanınca çağrılacak metot
-        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-            // Seçilen pin ile ilişkilendirilmiş şarj istasyonunu alın
-            if let coordinate = view.annotation?.coordinate {
-                if let selectedCharge = parent.stations.first(where: { charge in
-                    return charge.latitude == coordinate.latitude && charge.longitude == coordinate.longitude
-                }) {
-                    parent.selectedCharge = selectedCharge
+    var body: some View {
+        Map(
+            coordinateRegion: .constant(MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), // Örnek bir konum
+                span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+            )),
+            showsUserLocation: true,
+            userTrackingMode: .constant(.follow),
+            annotationItems: [selectedAnnotation].compactMap { $0 }
+        ) { annotation in
+            MapPin(coordinate: annotation.coordinate, tint: .blue)
+                .onTapGesture {
+                    selectedAnnotation = annotation
                 }
-            }
-        }
-
-        // Pin'den ayrıldığında çağrılacak metot
-        func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-            // Seçili şarj istasyonunu temizle
-            parent.selectedCharge = nil
         }
     }
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        // Harita bölgesini güncelle
-        uiView.setRegion(region, animated: true)
-
-        // Şarj istasyonlarını haritaya ekleyin
-        uiView.removeAnnotations(uiView.annotations)
-        uiView.addAnnotations(stations.map { charge in
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: charge.latitude ?? 0.0, longitude: charge.longitude ?? 0.0)
-            annotation.title = charge.addressTitle // Title'ı burada ayarla
-            return annotation
-        })
-    }
-
 }
-
+*/

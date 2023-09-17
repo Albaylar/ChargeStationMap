@@ -13,21 +13,17 @@ struct ChargeElement: Codable {
     let usageType: UsageType?
     let statusType: StatusType?
     let submissionStatus: SubmissionStatus?
-    
     let isRecentlyVerified: Bool?
     let id: Int?
     let uuid: String?
     let parentChargePointID: JSONNull?
     let dataProviderID: Int?
-    
     let operatorID: Int?
-    
     let usageTypeID: Int?
     let usageCost: String?
     let addressInfo: AddressInfo?
     let connections: [Connection]?
     let numberOfPoints: Int?
-    
     let statusTypeID: Int?
     let metadataValues: JSONNull?
     let dataQualityLevel: Int?
@@ -39,24 +35,18 @@ struct ChargeElement: Codable {
         case usageType = "UsageType"
         case statusType = "StatusType"
         case submissionStatus = "SubmissionStatus"
-        
-        
         case isRecentlyVerified = "IsRecentlyVerified"
         case id = "ID"
         case uuid = "UUID"
         case parentChargePointID = "ParentChargePointID"
         case dataProviderID = "DataProviderID"
-        
         case operatorID = "OperatorID"
-        
         case usageTypeID = "UsageTypeID"
         case usageCost = "UsageCost"
         case addressInfo = "AddressInfo"
         case connections = "Connections"
         case numberOfPoints = "NumberOfPoints"
-        
         case statusTypeID = "StatusTypeID"
-        
         case metadataValues = "MetadataValues"
         case dataQualityLevel = "DataQualityLevel"
         case submissionStatusTypeID = "SubmissionStatusTypeID"

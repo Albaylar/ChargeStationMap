@@ -12,12 +12,14 @@ import CoreLocation
 
 class ChargeViewModel : ObservableObject {
     
+    
+    
     @Published private var locationManager = CLLocationManager()
     @Published var stationList = [ChargeListViewModel]()
     @Published var userTrackingMode: MapUserTrackingMode = .follow
     @Published var selectedRegion  = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
  
     let service = WebService()
     
@@ -50,9 +52,15 @@ class ChargeViewModel : ObservableObject {
     }
     func filteredStations(_ searchText: String) -> [ChargeListViewModel] {
         return stationList.filter { charge in
-            return charge.addressTitle?.contains(searchText) ?? false
+            let stateMatches = charge.charge.addressInfo?.stateOrProvince?.contains(searchText) ?? false
+            let operatorMatches = charge.addressTitle?.contains(searchText) ?? false
+            
+            // İki kriteri bir arada kontrol etmek için &&
+            return stateMatches || operatorMatches
         }
     }
+
+
     func checkLocationAuthorizationStatus() {
         if CLLocationManager.locationServicesEnabled() {
             let status = locationManager.authorizationStatus
@@ -116,11 +124,7 @@ class ChargeViewModel : ObservableObject {
         
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    func updateMap(with annotations: [ChargeListViewModel], centerCoordinate: CLLocationCoordinate2D) {
-        // Haritayı güncelleyin ve yakın yerlere işaretçiler ekleyin
-        // region.center'i centerCoordinate ile güncelleyin ve annotationItems'a annotations ekleyin
-        self.selectedRegion.center = centerCoordinate
-    }
+
 
     struct ChargeListViewModel : Identifiable {
         let charge : ChargeElement
@@ -128,9 +132,7 @@ class ChargeViewModel : ObservableObject {
         var id : Int? {
             charge.id
         }
-        var usageCost : String? {
-            charge.usageCost
-        }
+        
         var websiteURL : String? {
             charge.dataProvider?.websiteURL
         }
@@ -149,6 +151,24 @@ class ChargeViewModel : ObservableObject {
         var operatortitle : String? {
             charge.operatorInfo?.title
         }
+        var ConnectionType: [String] {
+            // Dizi içeriğini döngü kullanarak işleyin ve istediğiniz veriyi çıkarın
+            var types: [String] = []
+            if let connections = charge.connections {
+                for connection in connections {
+                    if let connectionType = connection.connectionType {
+                        if let title = connectionType.title {
+                            types.append(title)
+                        }
+                    }
+                }
+            }
+            return types
+        }
+        var city : String? {
+            charge.addressInfo?.stateOrProvince
+        }
+
         
         
         

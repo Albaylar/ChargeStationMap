@@ -12,14 +12,14 @@ import Combine
 
 struct ContentView: View {
     @ObservedObject var viewModel = ChargeViewModel()
-    
+    @State private var selectedAnnotation: ChargeViewModel.ChargeListViewModel?
+
     @State private var searchText = ""
     @State private var isLoading = true
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5) // Bu değerleri ayarlayarak haritayı daha geniş bir perspektiften gösterebilirsiniz
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005) // Bu değerleri ayarlayarak haritayı daha geniş bir perspektiften gösterebilirsiniz
     )
-    
     @State private var showAlert = false
     @State private var userTrackingMode: MapUserTrackingMode = .none
     @State private var location: CLLocation?
@@ -40,35 +40,27 @@ struct ContentView: View {
                         tint: .green
                     )
                 }
+                
+
                 .onTapGesture {
+                    
                     hideKeyboard() // Haritada herhangi bir yere tıkladığınızda klavyeyi kapatır
                 }
+                
                 .ignoresSafeArea()
                 
                 VStack {
-                    TextField("Search", text: $searchText)
-                        .padding()
-                        .background(Color(.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.6)))
-                        .foregroundColor(.black)
-                        .cornerRadius(75)
-                        .padding([.leading, .bottom, .trailing])
-                        .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.08)
-                    
-                    Spacer()
-                    
-                    Button("Search Location") {
-                        // Kullanıcının girdiği metni bir konuma dönüştür ve haritayı güncelle
-                        
-                        viewModel.convertTextToLocation(searchText) { location in
-                            if let location = location {
-                                self.location = location
-                                region.center = location.coordinate
-                                hideKeyboard()
-                            } else {
-                                showAlert = true
-                            }
-                        }
+                    HStack {
+                        TextField("Search", text: $searchText)
+                            .padding(.trailing, 10) // Arama simgesi ile metin arasına bir boşluk bırakmak için
+                        Image(systemName: "magnifyingglass") // Arama simgesi
+                            .foregroundColor(.black)
                     }
+                    .padding()
+                    .background(Color(.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.6)))
+                    .foregroundColor(.black)
+                    .cornerRadius(75)
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.05) // Yüksekliği ayarlayın
                     .padding([.leading, .bottom, .trailing])
                     .foregroundColor(.black)
                     .alert(isPresented: $showAlert) {
@@ -78,18 +70,27 @@ struct ContentView: View {
                             dismissButton: .default(Text("Tamam"))
                         )
                     }
-                    Spacer()
+                    Spacer() // Yükseklik eklemek için Spacer kullanın
                         .frame(maxWidth: .infinity)
-                        .padding()
-                    
-                    // MyCollectionView'ı en alta taşıdık
+                        .padding(.all)
+                
+                
+
+                
                     MyCollectionView(locations: viewModel.filteredStations(searchText)) { location in
                         // Burada location nesnesini kullanarak latitude ve longitude'a erişebilirsiniz
-                        let latitude = location.latitude ?? 0.0
-                        let longitude = location.longitude ?? 0.0
-                        // didSelectLocation işlemini burada çağırabilirsiniz
-                        region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                        if let latitude = location.latitude, let longitude = location.longitude {
+                            // didSelectLocation işlemini burada çağırabilirsiniz
+                            self.selectedAnnotation = location
+                            region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                            
+                            // Yeni konuma gitme işlemini başlat
+                            userTrackingMode = .follow
+                        }
                     }
+
+                    .frame(width: UIScreen.main.bounds.width*0.9,height: UIScreen.main.bounds.height*0.2)
+
                 }
             }
             .onReceive(Just(searchText)) { newSearchText in
@@ -102,21 +103,18 @@ struct ContentView: View {
                     }
                 }
             }
+            
+
             .onAppear {
-                region = MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-                    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-                )
-                
+                viewModel.checkLocationAuthorizationStatus()
                 
                 Task.init {
                     await viewModel.fetchData()
-                    isLoading = false
                 }
             }
             
+            
         }
-        
     }
 }
 

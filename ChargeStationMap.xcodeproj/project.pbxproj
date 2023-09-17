@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		694AF2AC2AB71F1C00A0CE07 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */; };
 		694AF2AE2AB720FD00A0CE07 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */; };
+		694AF2B22AB7BAB300A0CE07 /* MapAppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */; };
 		69DA3D272AB65A680080F630 /* ChargeStationMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */; };
 		69DA3D292AB65A680080F630 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D282AB65A680080F630 /* ContentView.swift */; };
 		69DA3D2B2AB65A690080F630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69DA3D2A2AB65A690080F630 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppLauncher.swift; sourceTree = "<group>"; };
 		69DA3D232AB65A680080F630 /* ChargeStationMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargeStationMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeStationMapApp.swift; sourceTree = "<group>"; };
 		69DA3D282AB65A680080F630 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				69DA3D282AB65A680080F630 /* ContentView.swift */,
 				694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */,
 				694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */,
+				694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69DA3D3F2AB65AE30080F630 /* WebService.swift in Sources */,
+				694AF2B22AB7BAB300A0CE07 /* MapAppLauncher.swift in Sources */,
 				69DA3D292AB65A680080F630 /* ContentView.swift in Sources */,
 				694AF2AE2AB720FD00A0CE07 /* MyCollectionViewCell.swift in Sources */,
 				69DA3D272AB65A680080F630 /* ChargeStationMapApp.swift in Sources */,
