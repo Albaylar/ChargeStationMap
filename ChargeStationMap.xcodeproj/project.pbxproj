@@ -7,18 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		694AF2AC2AB71F1C00A0CE07 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */; };
+		694AF2AE2AB720FD00A0CE07 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */; };
 		69DA3D272AB65A680080F630 /* ChargeStationMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */; };
 		69DA3D292AB65A680080F630 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D282AB65A680080F630 /* ContentView.swift */; };
 		69DA3D2B2AB65A690080F630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69DA3D2A2AB65A690080F630 /* Assets.xcassets */; };
 		69DA3D2E2AB65A690080F630 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69DA3D2D2AB65A690080F630 /* Preview Assets.xcassets */; };
+		69DA3D382AB65A9E0080F630 /* ChargeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D372AB65A9E0080F630 /* ChargeModel.swift */; };
+		69DA3D3A2AB65AAD0080F630 /* ChargeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D392AB65AAD0080F630 /* ChargeViewModel.swift */; };
+		69DA3D3C2AB65ABB0080F630 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D3B2AB65ABB0080F630 /* Constant.swift */; };
+		69DA3D3F2AB65AE30080F630 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D3E2AB65AE30080F630 /* WebService.swift */; };
+		69DA3D412AB65AF00080F630 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D402AB65AF00080F630 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		69DA3D232AB65A680080F630 /* ChargeStationMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargeStationMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeStationMapApp.swift; sourceTree = "<group>"; };
 		69DA3D282AB65A680080F630 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		69DA3D2A2AB65A690080F630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69DA3D2D2AB65A690080F630 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		69DA3D372AB65A9E0080F630 /* ChargeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeModel.swift; sourceTree = "<group>"; };
+		69DA3D392AB65AAD0080F630 /* ChargeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeViewModel.swift; sourceTree = "<group>"; };
+		69DA3D3B2AB65ABB0080F630 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		69DA3D3E2AB65AE30080F630 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		69DA3D402AB65AF00080F630 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		69DA3D422AB6644B0080F630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +66,12 @@
 		69DA3D252AB65A680080F630 /* ChargeStationMap */ = {
 			isa = PBXGroup;
 			children = (
+				69DA3D422AB6644B0080F630 /* Info.plist */,
+				69DA3D3D2AB65AC90080F630 /* Service */,
+				69DA3D362AB65A8F0080F630 /* Model */,
+				69DA3D352AB65A840080F630 /* ViewModel */,
+				69DA3D342AB65A730080F630 /* View */,
 				69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */,
-				69DA3D282AB65A680080F630 /* ContentView.swift */,
 				69DA3D2A2AB65A690080F630 /* Assets.xcassets */,
 				69DA3D2C2AB65A690080F630 /* Preview Content */,
 			);
@@ -65,6 +84,42 @@
 				69DA3D2D2AB65A690080F630 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		69DA3D342AB65A730080F630 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				69DA3D282AB65A680080F630 /* ContentView.swift */,
+				694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */,
+				694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		69DA3D352AB65A840080F630 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				69DA3D392AB65AAD0080F630 /* ChargeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		69DA3D362AB65A8F0080F630 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				69DA3D372AB65A9E0080F630 /* ChargeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		69DA3D3D2AB65AC90080F630 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				69DA3D3B2AB65ABB0080F630 /* Constant.swift */,
+				69DA3D3E2AB65AE30080F630 /* WebService.swift */,
+				69DA3D402AB65AF00080F630 /* NetworkService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +192,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69DA3D3F2AB65AE30080F630 /* WebService.swift in Sources */,
 				69DA3D292AB65A680080F630 /* ContentView.swift in Sources */,
+				694AF2AE2AB720FD00A0CE07 /* MyCollectionViewCell.swift in Sources */,
 				69DA3D272AB65A680080F630 /* ChargeStationMapApp.swift in Sources */,
+				69DA3D3C2AB65ABB0080F630 /* Constant.swift in Sources */,
+				69DA3D3A2AB65AAD0080F630 /* ChargeViewModel.swift in Sources */,
+				69DA3D382AB65A9E0080F630 /* ChargeModel.swift in Sources */,
+				694AF2AC2AB71F1C00A0CE07 /* CollectionView.swift in Sources */,
+				69DA3D412AB65AF00080F630 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,11 +332,14 @@
 				DEVELOPMENT_TEAM = LX3TQB65GJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChargeStationMap/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Uygulamamızın konumunuzu kullanması gerekiyor.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,11 +364,14 @@
 				DEVELOPMENT_TEAM = LX3TQB65GJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChargeStationMap/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Uygulamamızın konumunuzu kullanması gerekiyor.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
