@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  ChargeStationMap
-//
-//  Created by Furkan Deniz Albaylar on 17.09.2023.
-//
-
 import SwiftUI
 import CoreLocation
 import MapKit
@@ -12,20 +5,23 @@ import Combine
 
 struct ContentView: View {
     @ObservedObject var viewModel = ChargeViewModel()
-    @State private var selectedAnnotation: ChargeViewModel.ChargeListViewModel?
-
     @State private var searchText = ""
-    @State private var isLoading = true
+    @ObservedObject var locationManager = LocationManager()
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005) // Bu değerleri ayarlayarak haritayı daha geniş bir perspektiften gösterebilirsiniz
+        span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
     )
+
+    @State private var initialRegion: MKCoordinateRegion? // Başlangıçta harita merkezini saklamak için bir değişken ekleyin
+    @State private var isKeyboardVisible = false
+
     @State private var showAlert = false
     @State private var userTrackingMode: MapUserTrackingMode = .none
     @State private var location: CLLocation?
-    
-    
-    
+    @State private var isSearchBarActive = false
+    @State private var selectedLocation: ChargeViewModel.ChargeListViewModel?
+    @State private var searchThreshold = 3
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -40,27 +36,32 @@ struct ContentView: View {
                         tint: .green
                     )
                 }
-                
-
                 .onTapGesture {
-                    
-                    hideKeyboard() // Haritada herhangi bir yere tıkladığınızda klavyeyi kapatır
+                    isSearchBarActive = false // Haritaya tıkladığınızda arama çubuğunu kapatın
+                    hideKeyboard()
                 }
                 
                 .ignoresSafeArea()
                 
+
                 VStack {
                     HStack {
-                        TextField("Search", text: $searchText)
-                            .padding(.trailing, 10) // Arama simgesi ile metin arasına bir boşluk bırakmak için
-                        Image(systemName: "magnifyingglass") // Arama simgesi
+                        TextField("Search                          ", text: $searchText)
+                            .padding(.trailing, 10)
+                            .onTapGesture {
+                                isSearchBarActive = true
+                            }
+                        
+                        
+
+                        Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
                     .padding()
                     .background(Color(.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.6)))
                     .foregroundColor(.black)
                     .cornerRadius(75)
-                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.05) // Yüksekliği ayarlayın
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.05)
                     .padding([.leading, .bottom, .trailing])
                     .foregroundColor(.black)
                     .alert(isPresented: $showAlert) {
@@ -70,31 +71,36 @@ struct ContentView: View {
                             dismissButton: .default(Text("Tamam"))
                         )
                     }
-                    Spacer() // Yükseklik eklemek için Spacer kullanın
+                    Spacer()
                         .frame(maxWidth: .infinity)
                         .padding(.all)
-                
-                
 
-                
-                    MyCollectionView(locations: viewModel.filteredStations(searchText)) { location in
-                        // Burada location nesnesini kullanarak latitude ve longitude'a erişebilirsiniz
-                        if let latitude = location.latitude, let longitude = location.longitude {
-                            // didSelectLocation işlemini burada çağırabilirsiniz
-                            self.selectedAnnotation = location
-                            region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                            
-                            // Yeni konuma gitme işlemini başlat
-                            userTrackingMode = .follow
-                        }
+                    if isSearchBarActive || searchText.isEmpty {
+                        EmptyView()
+                    }else{
+                        
+                        MyCollectionView(locations: viewModel.filteredStations(searchText), selectedLocation: $selectedLocation)
+                            .frame(width: UIScreen.main.bounds.width * 0.98, height: UIScreen.main.bounds.height * 0.35)
+                            .padding()
                     }
 
-                    .frame(width: UIScreen.main.bounds.width*0.9,height: UIScreen.main.bounds.height*0.2)
 
                 }
             }
+            .onChange(of: selectedLocation) { newLocation in
+                if let location = newLocation {
+                    region.center = CLLocationCoordinate2D(latitude: location.latitude ?? 0.0, longitude: location.longitude ?? 0.0)
+                    userTrackingMode = .follow
+                }
+            }
             .onReceive(Just(searchText)) { newSearchText in
-                if !newSearchText.isEmpty {
+                if newSearchText.isEmpty {
+                    // Eğer searchText boşsa, mevcut merkezi kullanarak haritayı güncelle
+                    if let initialRegion = initialRegion {
+                        region = initialRegion
+                    }
+                } else {
+                    // Değilse, arama metni değeri kullanılarak konumu güncelle
                     viewModel.convertTextToLocation(newSearchText) { location in
                         if let location = location {
                             self.location = location
@@ -103,18 +109,20 @@ struct ContentView: View {
                     }
                 }
             }
-            
-
             .onAppear {
                 viewModel.checkLocationAuthorizationStatus()
-                
-                Task.init {
+                Task {
                     await viewModel.fetchData()
                 }
+                // Başlangıçta harita merkezini kaydet
+                initialRegion = region
             }
-            
-            
         }
+    }
+
+    private func hideKeyboard() {
+        // Klavyeyi gizlemek için kod burada olacak
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
@@ -123,5 +131,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-

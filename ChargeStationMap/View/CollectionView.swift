@@ -11,22 +11,21 @@ import MapKit
 
 struct MyCollectionView: View {
     let locations: [ChargeViewModel.ChargeListViewModel]
-    let didSelectLocation: (ChargeViewModel.ChargeListViewModel) -> Void
-
+    @Binding var selectedLocation: ChargeViewModel.ChargeListViewModel?
 
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 10) {
                 ForEach(locations) { location in
-                    MyCollectionViewCell(location: location) {
-                        didSelectLocation(location)
-                    }
+                    MyCollectionViewCell(location: location, didSelectLocation: {
+                        selectedLocation = location // Hücreye tıklandığında seçilen konumu sakla
+                    })
                 }
             }.padding()
         }
-        
     }
 }
+
 
 
 

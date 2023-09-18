@@ -2,30 +2,47 @@
 //  MapView.swift
 //  ChargeStationMap
 //
-//  Created by Furkan Deniz Albaylar on 17.09.2023.
+//  Created by Furkan Deniz Albaylar on 18.09.2023.
 //
-/*
+
 import SwiftUI
-import MapKit
+import _MapKit_SwiftUI
 
 struct MapView: View {
-    @Binding var selectedAnnotation: MKPointAnnotation?
-    
+    @Binding var region: MKCoordinateRegion
+    @Binding var userTrackingMode: MapUserTrackingMode
+    var annotations: [ChargeViewModel.ChargeListViewModel]
+    @Binding var selectedAnnotation: ChargeViewModel.ChargeListViewModel?
+
     var body: some View {
         Map(
-            coordinateRegion: .constant(MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), // Örnek bir konum
-                span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-            )),
+            coordinateRegion: $region,
             showsUserLocation: true,
-            userTrackingMode: .constant(.follow),
-            annotationItems: [selectedAnnotation].compactMap { $0 }
-        ) { annotation in
-            MapPin(coordinate: annotation.coordinate, tint: .blue)
-                .onTapGesture {
-                    selectedAnnotation = annotation
+            userTrackingMode: $userTrackingMode,
+            annotationItems: annotations
+        ) { charge in
+            MapMarker(
+                coordinate: CLLocationCoordinate2D(latitude: charge.latitude ?? 0.0, longitude: charge.longitude ?? 0.0),
+                tint: .green
+            )
+            .overlay(
+                Button(action: {
+                    // Tıklandığında yapılacak işlemler
+                    selectedAnnotation = charge
+                }) {
+                    // İsteğe bağlı, tıklanabilir bir görünüm ekleyebilirsiniz
+                    Text("Tıkla")
+                        .foregroundColor(.blue)
                 }
+            )
+
+
         }
+        .onTapGesture {
+            selectedAnnotation = nil
+        }
+        .ignoresSafeArea()
     }
 }
-*/
+
+

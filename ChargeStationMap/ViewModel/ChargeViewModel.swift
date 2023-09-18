@@ -20,6 +20,8 @@ class ChargeViewModel : ObservableObject {
     @Published var selectedRegion  = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
         span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+    @Published var selectedLocation: ChargeListViewModel?
+
  
     let service = WebService()
     
@@ -109,6 +111,9 @@ class ChargeViewModel : ObservableObject {
             }
         }
     }
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 
     
 
@@ -126,7 +131,12 @@ class ChargeViewModel : ObservableObject {
     }
 
 
-    struct ChargeListViewModel : Identifiable {
+    struct ChargeListViewModel : Identifiable ,Equatable {
+        static func == (lhs: ChargeListViewModel, rhs: ChargeListViewModel) -> Bool {
+                // Karşılaştırma mantığınızı burada uygulayın, örneğin:
+                return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+            }
+        
         let charge : ChargeElement
         
         var id : Int? {
@@ -175,9 +185,8 @@ class ChargeViewModel : ObservableObject {
         
     }
 }
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
+
+
+    
+
 

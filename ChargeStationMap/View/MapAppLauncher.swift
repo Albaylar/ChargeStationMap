@@ -14,12 +14,24 @@ struct MapAppLauncher: View {
     let charge: ChargeViewModel.ChargeListViewModel
 
     var body: some View {
+        
         Button(action: {
             openInAppleMaps()
         }) {
-            Image(systemName: "location.fill")
-                .foregroundColor(.blue)
+            HStack {
+                Image(systemName: "location.fill")
+                    .foregroundColor(.white)
+                Text("Navigate to location")
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .background(Color.green)
+            .cornerRadius(30)
         }
+
+        
     }
 
     private func openInAppleMaps() {
