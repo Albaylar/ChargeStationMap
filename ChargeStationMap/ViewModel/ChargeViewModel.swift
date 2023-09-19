@@ -56,6 +56,8 @@ class ChargeViewModel : ObservableObject {
         return stationList.filter { charge in
             let stateMatches = charge.charge.addressInfo?.stateOrProvince?.contains(searchText) ?? false
             let operatorMatches = charge.addressTitle?.contains(searchText) ?? false
+            let town = charge.town?.contains(searchText) ?? false
+            let postCode = charge.postalCode?.contains(searchText) ?? false
             
             // İki kriteri bir arada kontrol etmek için &&
             return stateMatches || operatorMatches
@@ -177,6 +179,12 @@ class ChargeViewModel : ObservableObject {
         }
         var city : String? {
             charge.addressInfo?.stateOrProvince
+        }
+        var town : String? {
+            charge.addressInfo?.town
+        }
+        var postalCode : String? {
+            charge.addressInfo?.postcode
         }
 
         

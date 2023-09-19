@@ -38,7 +38,8 @@ struct MyCollectionViewCell: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.green, lineWidth: 4)
                 .onTapGesture {
-                    didSelectLocation() // Hücreye tıkladığınızda didSelectLocation() fonksiyonunu çağırın
+                    didSelectLocation()
+                    
                 }
         )
     }

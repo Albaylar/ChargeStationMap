@@ -25,6 +25,7 @@ struct DetailView: View {
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .padding(.bottom, 20)
+            Text("Town of Charge Station : \(location.town ?? "")")
             
             // İstediğiniz diğer ayrıntıları burada görüntüleyebilirsiniz
             // Örneğin, telefon numarası, çalışma saatleri, vb.

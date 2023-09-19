@@ -81,10 +81,7 @@ struct AddressInfo: Codable {
         case latitude = "Latitude"
         case longitude = "Longitude"
         case contactTelephone1 = "ContactTelephone1"
-        
-        
         case relatedURL = "RelatedURL"
-        
         case distanceUnit = "DistanceUnit"
     }
 }
@@ -107,7 +104,6 @@ struct Country: Codable {
 struct Connection: Codable {
     let id, connectionTypeID: Int?
     let connectionType: ConnectionType?
-    
     let statusTypeID: Int?
     let statusType: StatusType?
     let levelID: Int?
@@ -122,7 +118,6 @@ struct Connection: Codable {
         case id = "ID"
         case connectionTypeID = "ConnectionTypeID"
         case connectionType = "ConnectionType"
-        
         case statusTypeID = "StatusTypeID"
         case statusType = "StatusType"
         case levelID = "LevelID"

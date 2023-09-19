@@ -98,7 +98,6 @@
 				69DA3D282AB65A680080F630 /* ContentView.swift */,
 				694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */,
 				694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */,
-				694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */,
 				694AF2B32AB84C7E00A0CE07 /* DetailView.swift */,
 			);
 			path = View;
@@ -108,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				69DA3D392AB65AAD0080F630 /* ChargeViewModel.swift */,
+				694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */,
 				694AF2B72AB8871E00A0CE07 /* LocationManager.swift */,
 			);
 			path = ViewModel;
