@@ -12,8 +12,6 @@ import CoreLocation
 
 class ChargeViewModel : ObservableObject {
     
-    
-    
     @Published private var locationManager = CLLocationManager()
     @Published var stationList = [ChargeListViewModel]()
     @Published var userTrackingMode: MapUserTrackingMode = .follow
@@ -24,8 +22,6 @@ class ChargeViewModel : ObservableObject {
 
  
     let service = WebService()
-    
-    
     
     
     func fetchData() async {
@@ -41,11 +37,7 @@ class ChargeViewModel : ObservableObject {
             let users = try await service.download(resource)
             
             DispatchQueue.main.async {
-                
                 self.stationList = users.map(ChargeListViewModel.init)
-                
-                
-                
             }
         }catch let error as NSError {
             print("Error: \(error)")
@@ -58,12 +50,10 @@ class ChargeViewModel : ObservableObject {
             let operatorMatches = charge.addressTitle?.contains(searchText) ?? false
             let town = charge.town?.contains(searchText) ?? false
             let postCode = charge.postalCode?.contains(searchText) ?? false
-            
             // İki kriteri bir arada kontrol etmek için &&
             return stateMatches || operatorMatches
         }
     }
-
 
     func checkLocationAuthorizationStatus() {
         if CLLocationManager.locationServicesEnabled() {

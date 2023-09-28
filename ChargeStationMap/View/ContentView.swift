@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var userLocation: CLLocationCoordinate2D?
 
 
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -43,18 +44,14 @@ struct ContentView: View {
                 
 
                 VStack {
-                    Spacer().frame(height: 30)
+                    Spacer()
+                        .frame(height: 30)
                     HStack {
-                        
                         TextField("Şarj istasyonu için konum giriniz                    ", text: $searchText)
-                            
-                            
                             .onTapGesture {
                                 isSearchBarActive = true
                             }
                         
-                        
-
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                     }
@@ -63,7 +60,6 @@ struct ContentView: View {
                     .foregroundColor(.black)
                     .cornerRadius(75)
                     .frame(width: UIScreen.main.bounds.width * 0.9, height: UIScreen.main.bounds.height * 0.08)
-                    
                     .foregroundColor(.black)
                     .alert(isPresented: $showAlert) {
                         Alert(
@@ -85,27 +81,29 @@ struct ContentView: View {
                             
                             VStack {
                                 Text(noResultsMessage)
-                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                    .font(.system(size: 18, weight: .bold, design: .rounded))
                                     .foregroundColor(.green)
                                     .padding()
                                     .background(
                                         RoundedRectangle(cornerRadius: 50)
-                                            .stroke(Color.green, lineWidth: 4)
+                                            .stroke(Color.green, lineWidth: 8)
                                     )
+                                    .background(Color.white)
+                                    .cornerRadius(50) // Beyaz kutuyu da yuvarlak köşeli yapabilirsiniz
+                                    .shadow(radius: 10)
                                     .padding(.horizontal, 20)
                                     .padding(.vertical, 10)
                             }
-                            .background(Color.white)
+                            
                                 
                         } else {
                             // Sonuçlar bulunursa koleksiyonu göster
                             MyCollectionView(locations: filteredStations, selectedLocation: $selectedLocation)
-                                .frame(width: UIScreen.main.bounds.width * 0.98, height: UIScreen.main.bounds.height * 0.38)
-                                .padding()
+                                .frame(width: UIScreen.main.bounds.width * 0.98, height: UIScreen.main.bounds.height * 0.30)
+                                
                         }
+                            
                     }
-
-
 
                 }
             }
@@ -126,7 +124,7 @@ struct ContentView: View {
                     }
                 }
             }
-
+            
             .onReceive(Just(searchText)) { newSearchText in
                 if newSearchText.isEmpty {
                     // Eğer searchText boşsa, mevcut merkezi kullanarak haritayı güncelle

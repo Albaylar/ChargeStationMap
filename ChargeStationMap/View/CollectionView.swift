@@ -20,20 +20,19 @@ struct MyCollectionView: View {
                 ForEach(locations) { location in
                     MyCollectionViewCell(location: location, didSelectLocation: {
                         selectedLocation = location // Hücreye tıklandığında seçilen konumu sakla
-                        isDetailSheetPresented = true // Detay görünümünü aç
+                        isDetailSheetPresented = true // Detay görünümünü açmak için bu değişkeni true olarak ayarla
                     })
                 }
             }.padding()
         }
         .sheet(isPresented: $isDetailSheetPresented) {
-            // Detay görünümünü burada ekleyin
-            // Örnek olarak:
             if let selectedLocation = selectedLocation {
                 DetailView(location: selectedLocation)
             }
         }
     }
 }
+
 
 
 

@@ -12,6 +12,7 @@
 		694AF2B22AB7BAB300A0CE07 /* MapAppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */; };
 		694AF2B42AB84C7E00A0CE07 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2B32AB84C7E00A0CE07 /* DetailView.swift */; };
 		694AF2B82AB8871E00A0CE07 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694AF2B72AB8871E00A0CE07 /* LocationManager.swift */; };
+		697F812A2AC3A1B2002DB3DF /* GoogleMapsAppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697F81292AC3A1B2002DB3DF /* GoogleMapsAppLauncher.swift */; };
 		69DA3D272AB65A680080F630 /* ChargeStationMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */; };
 		69DA3D292AB65A680080F630 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69DA3D282AB65A680080F630 /* ContentView.swift */; };
 		69DA3D2B2AB65A690080F630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69DA3D2A2AB65A690080F630 /* Assets.xcassets */; };
@@ -27,8 +28,9 @@
 		694AF2AB2AB71F1C00A0CE07 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		694AF2AD2AB720FD00A0CE07 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppLauncher.swift; sourceTree = "<group>"; };
-		694AF2B32AB84C7E00A0CE07 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		694AF2B32AB84C7E00A0CE07 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		694AF2B72AB8871E00A0CE07 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		697F81292AC3A1B2002DB3DF /* GoogleMapsAppLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsAppLauncher.swift; sourceTree = "<group>"; };
 		69DA3D232AB65A680080F630 /* ChargeStationMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChargeStationMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69DA3D262AB65A680080F630 /* ChargeStationMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeStationMapApp.swift; sourceTree = "<group>"; };
 		69DA3D282AB65A680080F630 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				69DA3D392AB65AAD0080F630 /* ChargeViewModel.swift */,
 				694AF2B12AB7BAB300A0CE07 /* MapAppLauncher.swift */,
 				694AF2B72AB8871E00A0CE07 /* LocationManager.swift */,
+				697F81292AC3A1B2002DB3DF /* GoogleMapsAppLauncher.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				69DA3D382AB65A9E0080F630 /* ChargeModel.swift in Sources */,
 				694AF2AC2AB71F1C00A0CE07 /* CollectionView.swift in Sources */,
 				69DA3D412AB65AF00080F630 /* NetworkService.swift in Sources */,
+				697F812A2AC3A1B2002DB3DF /* GoogleMapsAppLauncher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
