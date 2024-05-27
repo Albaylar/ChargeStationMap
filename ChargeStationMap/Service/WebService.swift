@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 enum NetworkError : Error {
     case invalidURL
@@ -16,7 +17,6 @@ enum NetworkError : Error {
 class WebService : NetworkService {
     var type: String = "WebService"
     
-    // WebService to use async throws method
     func download(_ resources: String) async throws -> [ChargeElement] {
         guard let url = URL(string: resources) else {
             throw NetworkError.invalidURL
@@ -30,4 +30,16 @@ class WebService : NetworkService {
         
         
     }
+    func loadStations(coordinate: CLLocationCoordinate2D, radius: Double) async throws -> [ChargeElement] {
+            let urlString = "https://api.example.com/stations?lat=\(coordinate.latitude)&lon=\(coordinate.longitude)&radius=\(radius)"
+            guard let url = URL(string: urlString) else {
+                throw NetworkError.invalidURL
+            }
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw NetworkError.invalidServiceResponese
+            }
+
+            return try JSONDecoder().decode([ChargeElement].self, from: data)
+        }
 }

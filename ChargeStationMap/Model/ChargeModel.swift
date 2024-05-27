@@ -28,6 +28,7 @@ struct ChargeElement: Codable {
     let metadataValues: JSONNull?
     let dataQualityLevel: Int?
     let submissionStatusTypeID: Int?
+    
 
     enum CodingKeys: String, CodingKey {
         case dataProvider = "DataProvider"
@@ -57,7 +58,6 @@ struct ChargeElement: Codable {
 struct AddressInfo: Codable {
     let id: Int?
     let title, addressLine1: String?
-    
     let town, stateOrProvince, postcode: String?
     let countryID: Int?
     let country: Country?
@@ -72,7 +72,6 @@ struct AddressInfo: Codable {
         case id = "ID"
         case title = "Title"
         case addressLine1 = "AddressLine1"
-        
         case town = "Town"
         case stateOrProvince = "StateOrProvince"
         case postcode = "Postcode"
@@ -85,7 +84,6 @@ struct AddressInfo: Codable {
         case distanceUnit = "DistanceUnit"
     }
 }
-
 // MARK: - Country
 struct Country: Codable {
     let isoCode, continentCode: String?
@@ -131,7 +129,6 @@ struct Connection: Codable {
         
     }
 }
-
 // MARK: - ConnectionType
 struct ConnectionType: Codable {
     let formalName: String?
@@ -147,7 +144,6 @@ struct ConnectionType: Codable {
         case title = "Title"
     }
 }
-
 // MARK: - CurrentType
 struct CurrentType: Codable {
     let description: String?
@@ -160,7 +156,6 @@ struct CurrentType: Codable {
         case title = "Title"
     }
 }
-
 // MARK: - Level
 struct Level: Codable {
     let comments: String?
@@ -175,7 +170,6 @@ struct Level: Codable {
         case title = "Title"
     }
 }
-
 // MARK: - StatusType
 struct StatusType: Codable {
     let isOperational, isUserSelectable: Bool?
@@ -189,7 +183,6 @@ struct StatusType: Codable {
         case title = "Title"
     }
 }
-
 // MARK: - DataProvider
 struct DataProvider: Codable {
     let websiteURL: String?
@@ -213,7 +206,6 @@ struct DataProvider: Codable {
         case title = "Title"
     }
 }
-
 // MARK: - DataProviderStatusType
 struct DataProviderStatusType: Codable {
     let isProviderEnabled: Bool?
@@ -231,7 +223,6 @@ struct DataProviderStatusType: Codable {
 struct OperatorInfo: Codable {
     let websiteURL: String?
     let comments: String?
-    
     let isPrivateIndividual: Bool?
     let addressInfo, bookingURL: JSONNull?
     let isRestrictedEdit: Bool?
@@ -241,12 +232,9 @@ struct OperatorInfo: Codable {
     enum CodingKeys: String, CodingKey {
         case websiteURL = "WebsiteURL"
         case comments = "Comments"
-        
         case isPrivateIndividual = "IsPrivateIndividual"
         case addressInfo = "AddressInfo"
         case bookingURL = "BookingURL"
-        
-        
         case isRestrictedEdit = "IsRestrictedEdit"
         case id = "ID"
         case title = "Title"

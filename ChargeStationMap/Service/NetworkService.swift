@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol NetworkService {
     func download(_ resources: String) async throws -> [ChargeElement]
     var type: String { get }

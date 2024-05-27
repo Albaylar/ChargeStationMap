@@ -11,17 +11,17 @@ import CoreLocation
 struct GoogleMapsAppLauncher: View {
     let destination: CLLocationCoordinate2D
     let charge: ChargeViewModel.ChargeListViewModel
-
+    
     var body: some View {
         Button(action: {
             openInGoogleMaps()
         }) {
             HStack {
-                Image("googleMaps") // Google Maps uygulamasının simgesini eklemelisiniz
+                Image("googleMaps") 
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width*0.08, height: UIScreen.main.bounds.height*0.035)
                     .foregroundColor(.white)
-                    
+                
                     .cornerRadius(20)
                     .shadow(radius: 10)
                     .overlay(
@@ -37,15 +37,13 @@ struct GoogleMapsAppLauncher: View {
             .cornerRadius(30)
         }
     }
-
+    
     private func openInGoogleMaps() {
-        let googleMapsURL = URL(string: "comgooglemaps://?q=\(destination.latitude),\(destination.longitude)&zoom=14&views=traffic") // Google Maps URL şeması
-
+        let googleMapsURL = URL(string: "comgooglemaps://?q=\(destination.latitude),\(destination.longitude)&zoom=14&views=traffic")
         if UIApplication.shared.canOpenURL(googleMapsURL!) {
             UIApplication.shared.open(googleMapsURL!, options: [:], completionHandler: nil)
         } else {
-            // Google Maps uygulaması yüklü değilse veya açılamazsa, web üzerinde açmayı deneyin
-            let googleMapsWebURL = URL(string: "https://www.google.com/maps/dir/?api=1&destination=\(destination.latitude),\(destination.longitude)&travelmode=driving") // Google Maps web URL şeması
+            let googleMapsWebURL = URL(string: "https://www.google.com/maps/dir/?api=1&destination=\(destination.latitude),\(destination.longitude)&travelmode=driving")
             UIApplication.shared.open(googleMapsWebURL!, options: [:], completionHandler: nil)
         }
     }
